@@ -12,16 +12,16 @@ public interface CredentialMapper {
     @Select("SELECT * FROM CREDENTIALS WHERE userid = #{userid}")
     List<Credential> getUserCredentials(User user);
 
-    /*@Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialid}")
-    Credential getCredential(Integer credentialid);*/
+    @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialid}")
+    Credential getCredential(Integer credentialid);
 
-    @Insert("INSERT INTO CREDENTIALS (url, username, key, password, userid) VALUES (#{url}, #{username}, #{key}, #{password}, #{userid}")
-    @Options(useGeneratedKeys = true, keyProperty = "credentialid")
+    @Insert("INSERT INTO CREDENTIALS (url, username, salt, password, userid) VALUES (#{url}, #{username}, #{salt}, #{password}, #{userid})")
+    @Options(useGeneratedKeys = true, keyProperty = "credentialId")
     int addCredential(Credential credential);
 
-    @Update("UPDATE CREDENTIALS SET url = #{url}, username = #{username}, password = #{password} WHERE credentialid = #{credentialid}")
+    @Update("UPDATE CREDENTIALS SET url = #{url}, username = #{username}, password = #{password} WHERE credentialId = #{credentialId}")
     void updateCredential(Credential credential);
 
-    @Delete("DELETE FROM CREDENTIALS WHERE credentialid = #{credentialid}")
+    @Delete("DELETE FROM CREDENTIALS WHERE credentialId = #{credentialId}")
     void deleteCredentials(Credential credential);
 }

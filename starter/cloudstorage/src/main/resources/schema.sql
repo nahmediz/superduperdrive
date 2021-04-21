@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS FILES (
 );
 
 CREATE TABLE IF NOT EXISTS CREDENTIALS (
-    credentialid INT PRIMARY KEY auto_increment,
+    credentialId INT PRIMARY KEY auto_increment,
     url VARCHAR(100),
     username VARCHAR (30),
-    key VARCHAR,
+    salt VARCHAR,
     password VARCHAR,
     userid INT,
     foreign key (userid) references USERS(userid)
